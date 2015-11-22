@@ -6,12 +6,18 @@ namespace RestaurantManager.Models
     {
         protected override void OnDataLoaded()
         {
-
+            this.OrderItems = base.Repository.Orders;
         }
+
+        private List<Order> _orderItems;
 
         public List<Order> OrderItems
         {
-            get { return base.Repository.Orders; }
+            get { return this._orderItems; }
+            set {
+                this._orderItems = value;
+                this.OnPropertyChanged();
+            }
         }
     }
 }

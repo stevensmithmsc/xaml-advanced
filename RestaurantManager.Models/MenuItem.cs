@@ -13,7 +13,7 @@ namespace RestaurantManager.Models
 
         public override string ToString()
         {
-            return base.ToString();
+            return Title;
         }
     }
 }

@@ -26,6 +26,20 @@
             <RowDefinition Height="0.10*"/>
         </Grid.RowDefinitions>
         <GridView Grid.Row="1" ItemsSource="{Binding OrderItems}">
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Background="AliceBlue" Padding="5" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="300" MinHeight="250">
+                        <TextBlock Text="{Binding Table.Description}" Foreground="DarkBlue" MinHeight="40" FontSize="32"/>
+                        <ListBox ItemsSource="{Binding Items}" MinHeight="150"/>
+                        <TextBlock Text="{Binding SpecialRequests}" Foreground="DarkViolet" MinHeight="50" />
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox IsChecked="{Binding Expedite}" HorizontalAlignment="Center" Width="145" Content="Expedited" Foreground="DarkBlue" />
+                            <CheckBox IsChecked="{Binding Complete}" HorizontalAlignment="Center" Width="145" Content="Complete" Foreground="DarkBlue"/>                          
+                        </StackPanel>
+                        <Button Content="Delete" Background="DarkBlue" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                    </StackPanel>
+                </DataTemplate>
+            </GridView.ItemTemplate>
         </GridView>
         <Button Content="Clear All Orders" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" />
     </Grid>

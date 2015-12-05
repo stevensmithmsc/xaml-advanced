@@ -4,12 +4,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:RestaurantManager.UniversalWindows"
     xmlns:models="using:RestaurantManager.Models"
+    xmlns:e="using:RestaurantManager.Extensions"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Page.DataContext>
         <models:ExpediteDataManager />
     </Page.DataContext>
+    <Page.Resources>
+        <e:BooltoColour x:Key="BooltoColourConverter" />
+    </Page.Resources>
     <Page.TopAppBar>
         <AppBar>
             <AppBarButton Label="Home" Click="MainPage_Click">
@@ -32,11 +36,16 @@
                         <TextBlock Text="{Binding Table.Description}" Foreground="DarkBlue" MinHeight="40" FontSize="32"/>
                         <ListBox ItemsSource="{Binding Items}" MinHeight="150"/>
                         <TextBlock Text="{Binding SpecialRequests}" Foreground="DarkViolet" MinHeight="50" />
-                        <StackPanel Orientation="Horizontal">
+                        <!--<StackPanel Orientation="Horizontal">
                             <CheckBox IsChecked="{Binding Expedite}" HorizontalAlignment="Center" Width="145" Content="Expedited" Foreground="DarkBlue" />
                             <CheckBox IsChecked="{Binding Complete}" HorizontalAlignment="Center" Width="145" Content="Complete" Foreground="DarkBlue"/>                          
-                        </StackPanel>
-                        <Button Content="Delete" Background="DarkBlue" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                        </StackPanel>-->
+                        <Border>
+                            <Border.Background>
+                                <SolidColorBrush Color="{Binding Expedite, Converter={StaticResource BooltoColourConverter}}" />
+                            </Border.Background>
+                            <Button Content="Delete" Background="DarkBlue" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                        </Border>
                     </StackPanel>
                 </DataTemplate>
             </GridView.ItemTemplate>
